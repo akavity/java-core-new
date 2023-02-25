@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 
 public class FileUtil {
     private final File file;
-    private String fileName;
 
     public FileUtil(String fileName) {
         this.file = new File(fileName);
