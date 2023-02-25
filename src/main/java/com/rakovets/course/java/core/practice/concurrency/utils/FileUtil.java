@@ -3,6 +3,8 @@ package com.rakovets.course.java.core.practice.concurrency.utils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FileUtil {
     private final File file;
@@ -15,7 +17,8 @@ public class FileUtil {
     public void write(String  text) {
         try {
             FileWriter writer = new FileWriter(file,true);
-            writer.write(text);
+            writer.write(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))
+                    + "-" + Thread.currentThread().getName());
             writer.flush();
             writer.close();
         } catch (IOException e) {
