@@ -18,10 +18,8 @@ public class Consumer implements Runnable {
         Integer sleepTime = null;
         while ((sleepTime = queue.poll()) != null) {
             sleep(sleepTime);
-            System.out.println(sleepTime + " slept");
             file.write(" - I slept " + sleepTime + " second(s)");
         }
-        System.out.println(" 1 second slept");
         file.write(" ...");
         sleep(1);
     }
