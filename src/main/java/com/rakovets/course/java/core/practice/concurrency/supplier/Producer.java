@@ -1,36 +1,43 @@
 package com.rakovets.course.java.core.practice.concurrency.supplier;
 
-import com.rakovets.course.java.core.practice.concurrency.dto.Queue;
 import com.rakovets.course.java.core.practice.concurrency.exceptions.UserInputException;
+
+import java.util.Queue;
 import java.util.Scanner;
 
-
 public class Producer implements Runnable {
-    private Queue queue;
+    private final Queue<Integer> queue;
 
-    public Producer() {
-        this.queue = new Queue();
+    public Producer(Queue<Integer> queueContainer) {
+        this.queue = queueContainer;
     }
+
 
     @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        try {
-            if (scanner.hasNext()) {
-                if (scanner.nextInt() >= 0) {
-                    queue.put(scanner.nextInt());
-                } else if (scanner.nextInt() == -1) {
-                    scanner.close();
+        int time;
+        while (true) {
+            try {
+                if (scanner.hasNextInt()) {
+                    time = scanner.nextInt();
+                    if (time == -1) {
+                        System.out.println("Goodbye");
+                        break;
+                    } else if (time >= 0) {
+                        System.out.println("Time's has added");
+                        queue.add(time);
+                    } else {
+                        throw new UserInputException("Write only positive numbers!");
+                    }
+                } else {
+                    throw new UserInputException("Write only numbers!");
                 }
-            } else {
-                throw new UserInputException("Write only positive");
+            } catch (UserInputException e) {
+                System.out.println(e.getMessage());
+                scanner.next();
             }
-        } catch (UserInputException e) {
-            System.out.println("Error message"  + e.getMessage());
         }
-    }
-
-    public Queue getQueue() {
-        return queue;
+        scanner.close();
     }
 }
