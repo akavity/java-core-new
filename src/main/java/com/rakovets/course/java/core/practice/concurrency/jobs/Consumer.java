@@ -24,7 +24,7 @@ public class Consumer implements Runnable {
         sleep(1);
     }
 
-    private void sleep(int time) {
+    private void sleep(Integer time) {
         try {
             TimeUnit.SECONDS.sleep(time);
         } catch (InterruptedException e) {
