@@ -1,19 +1,24 @@
 package com.rakovets.course.java.core.practice.concurrency;
 
-import com.rakovets.course.java.core.practice.concurrency.dto.QueueContainer;
 import com.rakovets.course.java.core.practice.concurrency.jobs.Consumer;
 import com.rakovets.course.java.core.practice.concurrency.supplier.Producer;
 
-public class Demo {
-    public static void main(String[] args) {
-        QueueContainer queueContainer = new QueueContainer();
-        Producer producer = new Producer(queueContainer);
-        Consumer consumer = new Consumer(queueContainer, "last Hope");
-        Thread pr = new Thread(producer);
-        Thread conThread =  new Thread(consumer);
+import java.util.Queue;
+import java.util.concurrent.*;
 
-       pr.start();
-       conThread.start();
-       consumer.disable();
+public class Demo {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        Queue<Integer> queueContainer = new LinkedBlockingQueue<>();
+
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() / 2);
+
+        Future<?> future = executor.submit(new Producer(queueContainer));
+        future.get();
+
+        executor.execute(new Consumer(queueContainer));
+        executor.execute(new Consumer(queueContainer));
+        executor.execute(new Consumer(queueContainer));
+
+        executor.shutdown();
     }
 }
