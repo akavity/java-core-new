@@ -12,7 +12,6 @@ public class Producer implements Runnable {
         this.queue = queueContainer;
     }
 
-
     @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
