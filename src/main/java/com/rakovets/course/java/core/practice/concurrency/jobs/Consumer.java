@@ -15,9 +15,8 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
         FileUtil file = new FileUtil("test.txt");
-        Integer number = null;
-        while ((number = queue.peek()) != null) {
-            Integer sleepTime = queue.poll();
+        Integer sleepTime = null;
+        while ((sleepTime = queue.poll()) != null) {
             sleep(sleepTime);
             System.out.println(sleepTime + " slept");
             file.write(" - I slept " + sleepTime + " second(s)");
