@@ -1,6 +1,6 @@
-package com.rakovets.course.java.core.practice.concurrency.jobs;
+package com.rakovets.course.java.core.practice.concurrency.producer_consumer.jobs;
 
-import com.rakovets.course.java.core.practice.concurrency.utils.FileUtil;
+import com.rakovets.course.java.core.practice.concurrency.producer_consumer.utils.FileUtil;
 
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;

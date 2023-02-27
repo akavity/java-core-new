@@ -1,4 +1,4 @@
-package com.rakovets.course.java.core.practice.concurrency.supplier;
+package com.rakovets.course.java.core.practice.concurrency.producer_consumer.supplier;
 
 import com.rakovets.course.java.core.practice.concurrency.exceptions.UserInputException;
 

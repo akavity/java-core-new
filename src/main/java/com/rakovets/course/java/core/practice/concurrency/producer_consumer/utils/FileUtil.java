@@ -1,4 +1,4 @@
-package com.rakovets.course.java.core.practice.concurrency.utils;
+package com.rakovets.course.java.core.practice.concurrency.producer_consumer.utils;
 
 import java.io.File;
 import java.io.FileWriter;
