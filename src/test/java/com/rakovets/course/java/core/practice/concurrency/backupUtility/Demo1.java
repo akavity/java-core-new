@@ -11,10 +11,10 @@ public class Demo1 {
     public static void main(String[] args) throws InterruptedException {
         Queue<File> queueContainer = new LinkedBlockingQueue<>();
 
-        Thread filesMarker = new Thread(new FilesMarker(queueContainer, "G:/home/akavity/dev/testBackupUtility"));
-        Thread directoryCreator1 = new Thread(new DirectoryCreator(queueContainer, "G:/home/akavity/dev/testBackupUtility/backup"));
-        Thread directoryCreator2 = new Thread(new DirectoryCreator(queueContainer, "G:/home/akavity/dev/testBackupUtility/backup"));
-        Thread directoryCreator3 = new Thread(new DirectoryCreator(queueContainer, "G:/home/akavity/dev/testBackupUtility/backup"));
+        Thread filesMarker = new Thread(new FilesMarker(queueContainer, "testBackupUtility"));
+        Thread directoryCreator1 = new Thread(new DirectoryCreator(queueContainer, "testBackupUtility/backup"));
+        Thread directoryCreator2 = new Thread(new DirectoryCreator(queueContainer, "testBackupUtility/backup"));
+        Thread directoryCreator3 = new Thread(new DirectoryCreator(queueContainer, "testBackupUtility/backup"));
 
         filesMarker.start();
         filesMarker.join();
