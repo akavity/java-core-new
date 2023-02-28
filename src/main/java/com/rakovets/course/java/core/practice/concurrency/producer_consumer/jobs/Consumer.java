@@ -5,8 +5,7 @@ import com.rakovets.course.java.core.practice.concurrency.producer_consumer.util
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
-public class Consumer implements Runnable {
-    private final Queue<Integer> queue;
+public class Consumer implements Runnable {    private final Queue<Integer> queue;
 
     public Consumer(Queue<Integer> queue) {
         this.queue = queue;
