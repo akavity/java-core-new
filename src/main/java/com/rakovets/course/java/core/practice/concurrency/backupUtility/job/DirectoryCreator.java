@@ -20,7 +20,7 @@ public class DirectoryCreator implements Runnable {
         boolean existence = false;
         File dest = new File(directory);
         if (!dest.exists()) {
-           existence = dest.mkdir();
+            existence = dest.mkdir();
             System.out.println("New directory has created");
         }
         File file = null;
@@ -30,7 +30,7 @@ public class DirectoryCreator implements Runnable {
                 Files.copy(source.toPath(), dest.toPath().resolve(source.getName()), StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("files " + file.getName() + " has copied in new directory");
             } catch (IOException e) {
-                 e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }

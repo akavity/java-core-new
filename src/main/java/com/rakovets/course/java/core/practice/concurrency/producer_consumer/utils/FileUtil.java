@@ -14,7 +14,7 @@ public class FileUtil {
     }
 
     public void write(String text) {
-        try(FileWriter writer = new FileWriter(file, true);) {
+        try (FileWriter writer = new FileWriter(file, true);) {
             writer.write(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))
                     + "-" + Thread.currentThread().getName() + text + "\n");
         } catch (IOException e) {
