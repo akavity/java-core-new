@@ -3,6 +3,7 @@ package com.rakovets.course.java.core.practice.concurrency.backupUtility.job;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Queue;
 
 public class DirectoryCreator implements Runnable {
@@ -16,14 +17,20 @@ public class DirectoryCreator implements Runnable {
 
     @Override
     public void run() {
+        boolean existence = false;
         File dest = new File(directory);
+        if (!dest.exists()) {
+           existence = dest.mkdir();
+            System.out.println("New directory has created");
+        }
         File file = null;
-        if ((file = queue.poll()) != null) {
+        while ((file = queue.poll()) != null) {
+            File source = new File(file.toURI());
             try {
-                Files.copy(file.toPath(), dest.toPath());
-                System.out.println("files " + file.getName() + " has copied in new directory" );
+                Files.copy(source.toPath(), dest.toPath().resolve(source.getName()), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("files " + file.getName() + " has copied in new directory");
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                 e.printStackTrace();
             }
         }
     }
